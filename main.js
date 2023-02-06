@@ -71,7 +71,7 @@
 let result = '';
 let i = 0;
 
-function pseudoLoader(timer) {
+function pseudoLoader(t) {
     console.log('Console was cleared');
     let timer = setInterval(() => {
         console.clear();
@@ -86,7 +86,7 @@ function pseudoLoader(timer) {
             console.log(`0% ${result} 100%`)
         }
 
-    }, timer);
+    }, t);
 }
 
 pseudoLoader(1000);
