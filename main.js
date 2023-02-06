@@ -19,33 +19,47 @@
 let fib = [0, 1];
 let result = [];
 
-// function JohnyOniNaDerevyah(from, to) {
-//     for (let i = 2; i <= 22; i++) {
-//         fib[i] = fib[i-2] + fib[i-1];  
-//     }
-
-//     console.log(fib);
-
-//     let interval = fib.slice(from, to + 1).filter(el => el > 1);
-
-//     console.log(interval);
-
-// }
-
-
-for (let i = 0; i < 30; i++) {
-    result[i] = i;
-}
-
-console.log(result);
-
-for (let i = 0; i < result.length; i++) {
-    if (result[i] < 1) {
-        result = result.splice(result[i], 1)
+function JohnyOniNaDerevyah(from, to) {
+    for (let i = 2; i <= 22; i++) {
+        fib[i] = fib[i-2] + fib[i-1];  
     }
+
+    console.log(fib);
+
+    let interval = fib.slice(from, to + 1);
+
+    console.log(interval);
+
+    function isPrime(n) {
+        if (n <= 1) {
+            return false;
+        } else if (n == 2) {
+            return true;
+        } else if (n % 2 == 0) {
+            return false;
+        } else {
+            for (let i = 2; i < n; i++) {
+                if (n % i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    result = interval.filter(el => isPrime(el) == true);
+
+    console.log(result);
+
+    result.forEach(function(el) {
+        setInterval(() => {
+            console.log(el);
+        }, 1000);
+    });
 }
 
-console.log(result);
+
+JohnyOniNaDerevyah(0, 22);
 
 
 
