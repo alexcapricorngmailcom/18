@@ -197,7 +197,7 @@ function pseudoLoader() {
             console.log(`0% ${loader} 100%`);
         }
 
-    }, getRandomTimer());
+    }, 0);
 }
 
 pseudoLoader();
