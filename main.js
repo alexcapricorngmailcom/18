@@ -128,37 +128,76 @@
 
 // Результаты всех задач выводить в console.log(), ибо это неблокирующий таймеры способ вывода.
 
-let result = '';
-let i = 0;
+// let result = '';
+// let i = 0;
+// let max = 100;
+
+// function pseudoLoader(t) {
+//     console.log('Console was cleared');
+//     let timer = setInterval(() => {
+//         console.clear();
+
+//         function getRandomIntInclusive(max) {
+            
+//             return Math.floor(Math.random() * (max - 10 + 1) + 10);
+//           }
+
+//         max = getRandomIntInclusive(max);
+
+//         for (let i = 0; i < getRandomIntInclusive(max); i++) {
+//             result = result + '#'
+//         }
+
+//         i++;
+
+//         console.log(`0% ${result}`)
+
+//         if (i == 10) {
+//             clearInterval(timer);
+//             console.clear();
+//             console.log(`0% ${result} 100%`)
+//         }
+
+//     }, t);  
+// }
+
+// pseudoLoader(1000);
+
+let loader = '';
+console.log('Consol was cleared');
 let max = 100;
 
-function pseudoLoader(t) {
-    console.log('Console was cleared');
-    let timer = setInterval(() => {
+function pseudoLoader() {
+
+    function getRandomTimer() {
+        return Math.floor(Math.random() * (3000 - 1000 + 1) + 1000);
+    }
+
+    let timer = setTimeout(function tick() {
         console.clear();
 
-        function getRandomIntInclusive(max) {
-            
-            return Math.floor(Math.random() * (max - 10 + 1) + 10);
-          }
-
-        max = getRandomIntInclusive(max);
-
-        for (let i = 0; i < getRandomIntInclusive(max); i++) {
-            result = result + '#'
+        function getRandomIndex(max) {
+            return Math.floor(Math.random() * (max + 1));
         }
+    
+        max = getRandomIndex(max);
+        
+        for (let i = 0; i < max; i++) {
+            loader = loader + "#";
+        }
+    
+        console.log(`0% ${loader}`);
+        console.log(getRandomTimer());
+        timer = setTimeout(tick, getRandomTimer());
+        
 
-        i++;
-
-        console.log(`0% ${result}`)
-
-        if (i == 10) {
-            clearInterval(timer);
+        if (max == 0) {
+            clearTimeout(timer);
             console.clear();
-            console.log(`0% ${result} 100%`)
+            console.log(`0% ${loader} 100%`);
         }
 
-    }, t);  
+    }, getRandomTimer());
 }
 
-pseudoLoader(1000);
+pseudoLoader();
