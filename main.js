@@ -163,16 +163,27 @@
 
 // pseudoLoader(1000);
 
+// 2. Напишите функцию pseudoLoader(), которая будет имитировать процесс загрузки от 0% до 100%.  
+// Процесс строится таким образом: Раз в t количество времени, процент загрузки увеличивается на n процентов.
+// Оба числа случайны. Процесс загрузки должен остановиться по достижении 100%.
+// P.S. Ограничьте диапазон чисел времени, что бы этот процесс не занимал минуты :smile:
+
+// Результаты всех задач выводить в console.log(), ибо это неблокирующий таймеры способ вывода.
+
 let loader = '';
-console.log('Consol was cleared');
 let max = 100;
+let random = 0;
+let percent = 0;
+console.log('Consol was cleared');
 
 function pseudoLoader() {
+
+    console.log(loader);
 
     function getRandomTimer() {
         return Math.floor(Math.random() * (3000 - 1000 + 1) + 1000);
     }
-
+    
     let timer = setTimeout(function tick() {
         console.clear();
 
@@ -180,21 +191,22 @@ function pseudoLoader() {
             return Math.floor(Math.random() * (max + 1));
         }
     
-        max = getRandomIndex(max);
+        random = getRandomIndex(max);
         
-        for (let i = 0; i < max; i++) {
-            loader = loader + "#";
+        for (let i = 0; i < random; i++) {
+            loader = loader + '#';
         }
-    
-        console.log(`0% ${loader}`);
-        console.log(getRandomTimer());
+
+        max = max - random;
+        percent = percent + random;
+        
+        console.log(`0% ${loader} ${percent}%`);
+        // console.log(loader.length);
+        // console.log(max);
         timer = setTimeout(tick, getRandomTimer());
         
-
         if (max == 0) {
             clearTimeout(timer);
-            console.clear();
-            console.log(`0% ${loader} 100%`);
         }
 
     }, 0);
